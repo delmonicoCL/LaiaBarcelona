@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="estilos.css">
+	<title>Flexbox vs CSS Grid</title>
+</head>
+<body>
+	<div class="contenedor">
+		<div class="contenedor-puzzle">
+
+			<div id="div1" class="ImagContainer" ondrop="drop(event, 'div1')" ondragover="allowDrop(event)">
+                       
+                    </div>
+                    <div id="div2" class="ImagContainer" ondrop="drop(event, 'div2')" ondragover="allowDrop(event)">
+                       
+                    </div>
+                    <div id="div3" class="ImagContainer" ondrop="drop(event, 'div3')" ondragover="allowDrop(event)">
+                       
+                    </div>
+                    <div id="div4" class="ImagContainer" ondrop="drop(event, 'div4')" ondragover="allowDrop(event)">
+                       
+                    </div>
+                    <div id="div5" class="ImagContainer" ondrop="drop(event, 'div5')" ondragover="allowDrop(event)">
+                       
+                    </div>
+                    <div id="div6" class="ImagContainer" ondrop="drop(event, 'div6')" ondragover="allowDrop(event)">
+                       
+                    </div>
+                    <div id="div7" class="ImagContainer" ondrop="drop(event, 'div7')" ondragover="allowDrop(event)">
+                       
+                    </div>
+                    <div id="div8" class="ImagContainer" ondrop="drop(event, 'div8')" ondragover="allowDrop(event)">
+                       
+                    </div>
+                    <div id="div9" class="ImagContainer" ondrop="drop(event, 'div9')" ondragover="allowDrop(event)">
+                       
+                    </div>      
+		</div>
+
+		<div class="banner" style="background-image: url('./img/banner.jpg')">
+            <img id="drag1" class="DragContainer" src="/images/imagen-0.jpg" draggable="true" ondragstart="drag(event)" data-area="div1">
+            <img id="drag2" class="DragContainer" src="/images/imagen-1.jpg" draggable="true" ondragstart="drag(event)" data-area="div2">
+            <img id="drag3" class="DragContainer" src="/images/imagen-2.jpg" draggable="true" ondragstart="drag(event)" data-area="div3">
+            <img id="drag4" class="DragContainer" src="/images/imagen-3.jpg" draggable="true" ondragstart="drag(event)" data-area="div4">
+            <img id="drag5" class="DragContainer" src="/images/imagen-4.jpg" draggable="true" ondragstart="drag(event)" data-area="div5">
+            <img id="drag6" class="DragContainer" src="/images/imagen-5.jpg" draggable="true" ondragstart="drag(event)" data-area="div6">
+            <img id="drag7" class="DragContainer" src="/images/imagen-6.jpg" draggable="true" ondragstart="drag(event)" data-area="div7">
+            <img id="drag8" class="DragContainer" src="/images/imagen-7.jpg" draggable="true" ondragstart="drag(event)" data-area="div8">
+            <img id="drag9" class="DragContainer" src="/images/imagen-8.jpg" draggable="true" ondragstart="drag(event)" data-area="div9">
+		</div>
+	</div>
+</body>
+</html>

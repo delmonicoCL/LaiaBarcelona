@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Rompecabezas - PRUEBA 1</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Rompecabezas</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="puzzle-piece" id="piece1" draggable="true" data-zona="piece1">Pieza 1</div>
+                <div class="puzzle-piece" id="piece2" draggable="true" data-zona="piece2">Pieza 2</div>
+                <div class="puzzle-piece" id="piece3" draggable="true" data-zona="piece3">Pieza 3</div>
+                <div class="puzzle-piece" id="piece4" draggable="true" data-zona="piece4">Pieza 4</div>
+            </div>
+            <div class="col-md-6">
+                <div class="drop-target" id="piece1">1</div>
+                <div class="drop-target" id="piece2">2</div>
+                <div class="drop-target" id="piece3">3</div>
+                <div class="drop-target" id="piece4">4</div>
+            </div>
+        </div>
+    </div>
+    <script>
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+
+    function drag(event) {
+        event.dataTransfer.setData("text", event.target.id);
+    }
+
+    function drop(event) {
+        event.preventDefault();
+        var data = event.dataTransfer.getData("text");
+        var piece = document.getElementById(data);
+        if(event.target.getAttribute('id') == piece.getAttribute('data-zona')){
+            event.target.textContent = piece.textContent;
+        }
+    }
+
+    const puzzlePieces = document.querySelectorAll(".puzzle-piece");
+    const dropTargets = document.querySelectorAll(".drop-target");
+
+    puzzlePieces.forEach((piece) => {
+        piece.addEventListener('dragstart', drag);
+    });
+
+    dropTargets.forEach((target) => {
+        target.addEventListener('dragover', allowDrop);
+        target.addEventListener('drop', drop);
+    });
+    </script>
+</body>
+</html>

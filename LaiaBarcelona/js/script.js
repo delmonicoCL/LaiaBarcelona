@@ -1,36 +1,170 @@
-window.onload = function () {
-            var imagenes = document.querySelectorAll('img');
-            var zonas = document.querySelectorAll('[id^="zona"]');
-            var dragSrcElement = null;
+// Galería de imágenes para la página "eolica.html"
+var imagenesEo = [
+    { id: "drag1", src: "/images/eolica/imagen-0.jpg", area: "div1" },
+    { id: "drag2", src: "/images/eolica/imagen-1.jpg", area: "div2" },
+    { id: "drag3", src: "/images/eolica/imagen-2.jpg", area: "div3" },
+    { id: "drag4", src: "/images/eolica/imagen-3.jpg", area: "div4" },
+    { id: "drag5", src: "/images/eolica/imagen-4.jpg", area: "div5" },
+    { id: "drag6", src: "/images/eolica/imagen-5.jpg", area: "div6" },
+    { id: "drag7", src: "/images/eolica/imagen-6.jpg", area: "div7" },
+    { id: "drag8", src: "/images/eolica/imagen-7.jpg", area: "div8" },
+    { id: "drag9", src: "/images/eolica/imagen-8.jpg", area: "div9" }
+  ];
+  
+  // Galería de imágenes para la página "solar.html"
+  var imagenesSol = [
+    { id: "drag1", src: "/images/solar/imagen-0.jpg", area: "div1" },
+    { id: "drag2", src: "/images/solar/imagen-1.jpg", area: "div2" },
+    { id: "drag3", src: "/images/solar/imagen-2.jpg", area: "div3" },
+    { id: "drag4", src: "/images/solar/imagen-3.jpg", area: "div4" },
+    { id: "drag5", src: "/images/solar/imagen-4.jpg", area: "div5" },
+    { id: "drag6", src: "/images/solar/imagen-5.jpg", area: "div6" },
+    { id: "drag7", src: "/images/solar/imagen-6.jpg", area: "div7" },
+    { id: "drag8", src: "/images/solar/imagen-7.jpg", area: "div8" },
+    { id: "drag9", src: "/images/solar/imagen-8.jpg", area: "div9" }
+  ];
+  
+  // Función para cargar las imágenes en un orden aleatorio
+  function cargarImagenesAleatorias(galeria) {
+    // Mezcla aleatoriamente el orden de las imágenes en el array
+    galeria.sort(function() {
+      return 0.5 - Math.random();
+    });
+  
+    // Obtén el elemento contenedor donde se cargarán las imágenes
+    var grilla = document.getElementById("grilla");
+  
+    // Crea y asigna las imágenes en el orden aleatorio a los elementos img
+    for (var i = 0; i < galeria.length; i++) {
+      let j = i + 1;
+      let cadaImagenQuevoyApintar = "<img id='" + galeria[i].id + "' class='DragContainer' src='" + galeria[i].src + "' draggable='true' ondragstart='drag(event)' areaDondeSoltar='" + galeria[i].area + "'></img>";
+      grilla.innerHTML += cadaImagenQuevoyApintar;
+    }
+  }
+  
+  let piezaCorrectaSound = new Audio('/media/piezacorrecta.mp3');
+  let gameOverSound = new Audio('/media/gameover.mp3');
+  
+  // Llama a la función para cargar las imágenes en un orden aleatorio después de que el DOM se haya cargado completamente
+  document.addEventListener("DOMContentLoaded", function() {
+    var currentPage = window.location.pathname; // Obtiene la ruta de la página actual
+  
+    if (currentPage.includes("eolica.html")) {
+      cargarImagenesAleatorias(imagenesEo);
+    } else if (currentPage.includes("solar.html")) {
+      cargarImagenesAleatorias(imagenesSol);
+    }
+  });
+  
+  
+// Función que se activa cuando un elemento arrastrado se encuentra sobre un área que puede recibirlo.
+function allowDrop(ev) {
+    ev.preventDefault();
+}
 
-            imagenes.forEach(function (imagen) {
-                imagen.addEventListener('dragstart', function (event) {
-                    event.dataTransfer.setData('text', event.target.id);
-                    dragSrcElement = event.target;
-                });
+// Función que se activa cuando comienza a arrastrar un elemento.
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
 
-                imagen.addEventListener('dragend', function (event) {
-                    dragSrcElement = null;
-                });
-            });
+// Función que se activa cuando se suelta un elemento.
+function drop(ev, areaId) {
+    ev.preventDefault();
+    var idElementQueSeArrastra = ev.dataTransfer.getData("text");
+    var imagenQueSeArrastra = document.getElementById(idElementQueSeArrastra);
+    var zonaCorrectaParaSoltarImagen = document.getElementById(areaId);
+    var piezasCorrectas = 0;
+    
 
-            zonas.forEach(function (zona) {
-                zona.addEventListener('dragover', function (event) {
-                    event.preventDefault();
-                });
 
-                zona.addEventListener('drop', function (event) {
-                    event.preventDefault();
-                    var idImagen = event.dataTransfer.getData('text');
-                    var imagen = document.getElementById(idImagen);
-                    var zonaCorrecta = imagen.dataset.zona;
+    if (imagenQueSeArrastra.getAttribute('areaDondeSoltar') === zonaCorrectaParaSoltarImagen.id) {
+        zonaCorrectaParaSoltarImagen.appendChild(imagenQueSeArrastra);
+        piezaCorrectaSound.play();
+    }
+}
 
-                    if (zona.id !== zonaCorrecta) {
-                        // Si la zona es incorrecta, no hagas nada
-                    } else {
-                        // Si la zona es correcta, mover la imagen a la zona
-                        zona.appendChild(imagen);
+// Función para verificar si el rompecabezas está completo
+function verificarRompecabezasCompleto() {
+    // Verifica si todas las piezas están en su lugar correcto
+    var piezasCorrectas = 0;
+
+    // Verifica que cada área tenga una imagen con el atributo areaDondeSoltar correspondiente
+    for (var i = 1; i <= 9; i++) {
+        var area = document.getElementById("div" + i);
+        var pieza = area.querySelector(".DragContainer");
+
+        if (pieza && pieza.getAttribute("areaDondeSoltar") === "div" + i) {
+            piezasCorrectas++;
+        }
+    
+    }
+  if (piezasCorrectas === 9) {
+            alert("¡Has completado el rompecabezas! FELICIDADES");
+            alert("Te quedaron " + timeLeft + ' Segundos ' + "para terminar");
+            
+            
+                    var currentPage = window.location.pathname; // Obtiene la ruta de la página actual
+                
+                    if (currentPage.includes("eolica.html")) {
+                        window.location.href = "logradoEO.html"; 
+                    } else if (currentPage.includes("solar.html")) {
+                        window.location.href = "logradoSOL.html"; 
                     }
-                });
-            });
-        };
+
+                      
+        }
+    // Si todas las piezas están en su lugar correcto
+    
+}
+
+// Llama a la función de verificación después de cada movimiento (en el evento "dragend")
+document.addEventListener("drop", verificarRompecabezasCompleto);
+
+// Tiempo límite en segundos
+const TIME_LIMIT = 1000;
+
+let timePassed = 0;
+let timeLeft = TIME_LIMIT;
+
+let gameInterval = setTimeout(cuentaAtras, 1000);
+
+function cuentaAtras() {
+    timePassed++;
+    timeLeft = TIME_LIMIT - timePassed;
+
+    let timerElement = document.getElementById('timer');
+    timerElement.textContent = 'Te quedan ' + timeLeft + ' Segundos ';
+
+    if (timeLeft <= 0) {
+        gameOverSound.play();
+        alert("¡TIEMPO!"); // Muestra un mensaje de tiempo agotado
+        let result = confirm("¿Quieres volver a jugar?");
+        if (result) {
+            window.location.href = "index.html"; // Redirige a la página de juego
+        } else {
+            window.location.href = "adios.html"; // Redirige a la página de inicio
+        }
+    }
+    else {
+        gameInterval = setTimeout(cuentaAtras, 1000);
+    }
+}
+
+
+// FUNCION DE SONIDO EN PAGINA DESACTIVADO///
+// window.onload = function sonido() {
+//           var audio = document.getElementById("miAudio");
+//           var playButton = document.getElementById("playButton");
+//           var stopButton = document.getElementById("stopButton");
+
+//           playButton.addEventListener("click", function() {
+//               audio.play();
+//           });
+
+//           stopButton.addEventListener("click", function() {
+//               audio.pause();
+//               audio.currentTime = 0;
+//           });
+//       };
+
+      
