@@ -1,0 +1,16 @@
+.puzzle-piece {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #000;
+    margin: 10px;
+    background-color: chocolate;
+}
+
+.drop-target {
+    width: 150px;
+    height: 150px;
+    border: 2px dashed #000;
+    display: inline-block;
+    margin: 10px;
+    background-color: aquamarine;
+}

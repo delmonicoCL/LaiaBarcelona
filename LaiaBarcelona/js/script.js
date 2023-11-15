@@ -151,20 +151,15 @@ function cuentaAtras() {
 }
 
 
-// FUNCION DE SONIDO EN PAGINA DESACTIVADO///
-// window.onload = function sonido() {
-//           var audio = document.getElementById("miAudio");
-//           var playButton = document.getElementById("playButton");
-//           var stopButton = document.getElementById("stopButton");
+window.onload = function sonido() {
+  var audio = document.getElementById("miAudio");
+  audio.volume = 0.3; // Establecer volumen al 50%
+  audio.play(); // Reproducir automáticamente el archivo de audio
 
-//           playButton.addEventListener("click", function() {
-//               audio.play();
-//           });
-
-//           stopButton.addEventListener("click", function() {
-//               audio.pause();
-//               audio.currentTime = 0;
-//           });
-//       };
+  audio.addEventListener("ended", function() {
+      audio.currentTime = 0; // Reiniciar el tiempo de reproducción al inicio
+      audio.play(); // Reproducir nuevamente el archivo de audio
+  });
+};
 
       
