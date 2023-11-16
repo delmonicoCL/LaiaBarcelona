@@ -67,7 +67,7 @@ function drag(ev) {
 }
 
 let piezaCorrectaSound = new Audio('/media/piezacorrecta.mp3');
-let gameOverSound = new Audio('/media/gameover.mp3');
+
 
 // Función que se activa cuando se suelta un elemento.
 function drop(ev, areaId) {
@@ -124,12 +124,16 @@ function verificarRompecabezasCompleto() {
 document.addEventListener("drop", verificarRompecabezasCompleto);
 
 // Tiempo límite en segundos
-const TIME_LIMIT = 100;
+const TIME_LIMIT = 10;
 
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 
+
+
 let gameInterval = setTimeout(cuentaAtras, 1000);
+let timeSound = new Audio('/media/time.mp3');
+let gameOverSound = new Audio('/media/gameover.mp3');
 
 function cuentaAtras() {
     timePassed++;
@@ -138,12 +142,35 @@ function cuentaAtras() {
     let timerElement = document.getElementById('timer');
     timerElement.textContent = 'Te quedan ' + timeLeft + ' Segundos ';
 
+    if (timeLeft < 16){
+      timeSound.play();
+
+    }
+
     if (timeLeft <= 0) {
-        gameOverSound.play();
+      
+      
+   }
+   
+    
+    if (timeLeft <= 0) {
+
+      timeSound.pause();
+      timeSound.currentTime = 0;
+      gameOverSound.play();
+        
         alert("¡TIEMPO!"); // Muestra un mensaje de tiempo agotado
+        gameOverSound.play();
         let result = confirm("¿Quieres volver a jugar?");
         if (result) {
-            window.location.href = "index.html"; // Redirige a la página de juego
+          var currentPage = window.location.pathname; // Obtiene la ruta de la página actual
+               
+              if (currentPage.includes("solar.html")) {
+                  window.location.href = "solar.html"; 
+              } if (currentPage.includes("eolica.html")) {
+                  window.location.href = "eolica.html"; 
+              }
+            
         } else {
             window.location.href = "adios.html"; // Redirige a la página de inicio
         }
