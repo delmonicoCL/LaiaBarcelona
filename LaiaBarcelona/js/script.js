@@ -42,8 +42,7 @@ var imagenesEo = [
     }
   }
   
-  let piezaCorrectaSound = new Audio('/media/piezacorrecta.mp3');
-  let gameOverSound = new Audio('/media/gameover.mp3');
+ 
   
   // Llama a la función para cargar las imágenes en un orden aleatorio después de que el DOM se haya cargado completamente
   document.addEventListener("DOMContentLoaded", function() {
@@ -66,6 +65,9 @@ function allowDrop(ev) {
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
 }
+
+let piezaCorrectaSound = new Audio('/media/piezacorrecta.mp3');
+let gameOverSound = new Audio('/media/gameover.mp3');
 
 // Función que se activa cuando se suelta un elemento.
 function drop(ev, areaId) {
@@ -99,10 +101,11 @@ function verificarRompecabezasCompleto() {
     
     }
   if (piezasCorrectas === 9) {
+          
             alert("¡Has completado el rompecabezas! FELICIDADES");
             alert("Te quedaron " + timeLeft + ' Segundos ' + "para terminar");
-            
-            
+                      
+                       
                     var currentPage = window.location.pathname; // Obtiene la ruta de la página actual
                 
                     if (currentPage.includes("eolica.html")) {
@@ -113,7 +116,7 @@ function verificarRompecabezasCompleto() {
 
                       
         }
-    // Si todas las piezas están en su lugar correcto
+  
     
 }
 
@@ -121,7 +124,7 @@ function verificarRompecabezasCompleto() {
 document.addEventListener("drop", verificarRompecabezasCompleto);
 
 // Tiempo límite en segundos
-const TIME_LIMIT = 1000;
+const TIME_LIMIT = 100;
 
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
@@ -153,7 +156,7 @@ function cuentaAtras() {
 
 window.onload = function sonido() {
   var audio = document.getElementById("miAudio");
-  audio.volume = 0.3; // Establecer volumen al 50%
+  audio.volume = 0.2; // Establecer volumen al 20%
   audio.play(); // Reproducir automáticamente el archivo de audio
 
   audio.addEventListener("ended", function() {
