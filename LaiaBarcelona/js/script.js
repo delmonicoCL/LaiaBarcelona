@@ -101,7 +101,7 @@ function verificarRompecabezasCompleto() {
     
     }
   if (piezasCorrectas === 9) {
-          
+      timeSound.pause();
             alert("¡Has completado el rompecabezas! FELICIDADES");
             alert("Te quedaron " + timeLeft + ' Segundos ' + "para terminar");
                       
@@ -124,7 +124,7 @@ function verificarRompecabezasCompleto() {
 document.addEventListener("drop", verificarRompecabezasCompleto);
 
 // Tiempo límite en segundos
-const TIME_LIMIT = 10;
+const TIME_LIMIT = 20;
 
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
@@ -146,12 +146,7 @@ function cuentaAtras() {
       timeSound.play();
 
     }
-
-    if (timeLeft <= 0) {
-      
-      
-   }
-   
+    
     
     if (timeLeft <= 0) {
 
