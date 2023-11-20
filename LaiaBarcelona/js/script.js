@@ -42,6 +42,8 @@ var imagenesEo = [
     }
   }
   
+
+  
  
   
   // Llama a la función para cargar las imágenes en un orden aleatorio después de que el DOM se haya cargado completamente
@@ -102,8 +104,22 @@ function verificarRompecabezasCompleto() {
     }
   if (piezasCorrectas === 9) {
       timeSound.pause();
-            alert("¡Has completado el rompecabezas! FELICIDADES");
-            alert("Te quedaron " + timeLeft + ' Segundos ' + "para terminar");
+      alert("¡Has completado el rompecabezas! FELICIDADES");
+
+      let tiempoPorcentaje = ((timeLeft*100)/TIME_LIMIT);
+      
+            alert("TIEMPO PORCENTAJE " + tiempoPorcentaje + ' ' + "");
+            
+            let puntaje = (tiempoPorcentaje + 50);
+            
+            // Redondear a la cifra entera más cercana
+            let puntajeRedondeado = Math.round(puntaje);
+            
+            // Convertir a un entero
+            let puntajeEntero = parseInt(puntajeRedondeado);
+            
+            alert("Obtuviste " + puntajeEntero + ' PUNTOS En esta prueba ' + "");
+
                       
                        
                     var currentPage = window.location.pathname; // Obtiene la ruta de la página actual
@@ -113,18 +129,28 @@ function verificarRompecabezasCompleto() {
                     } else if (currentPage.includes("solar.html")) {
                         window.location.href = "logradoSOL.html"; 
                     }
-
                       
         }
-  
     
 }
+
+function salir() {
+  gameOverSound.play();
+  var respuesta = confirm('¿Deseas cerrar?');
+    if (respuesta) {
+      window.location.href = 'adios.html';
+  }
+}
+
 
 // Llama a la función de verificación después de cada movimiento (en el evento "dragend")
 document.addEventListener("drop", verificarRompecabezasCompleto);
 
+
+
+
 // Tiempo límite en segundos
-const TIME_LIMIT = 20;
+const TIME_LIMIT = 60;
 
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
@@ -174,6 +200,9 @@ function cuentaAtras() {
         gameInterval = setTimeout(cuentaAtras, 1000);
     }
 }
+
+
+
 
 
 window.onload = function sonido() {
