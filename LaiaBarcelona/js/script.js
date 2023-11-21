@@ -23,6 +23,22 @@ var imagenesEo = [
     { id: "drag8", src: "/images/solar/imagen-7.jpg", area: "div8" },
     { id: "drag9", src: "/images/solar/imagen-8.jpg", area: "div9" }
   ];
+
+
+  // Galería de imágenes para la página "solar.html"
+  var imagenesBat = [
+    { id: "drag1", src: "/images/bateria/imagen-0.jpg", area: "div1" },
+    { id: "drag2", src: "/images/bateria/imagen-1.jpg", area: "div2" },
+    { id: "drag3", src: "/images/bateria/imagen-2.jpg", area: "div3" },
+    { id: "drag4", src: "/images/bateria/imagen-3.jpg", area: "div4" },
+    { id: "drag5", src: "/images/bateria/imagen-4.jpg", area: "div5" },
+    { id: "drag6", src: "/images/bateria/imagen-5.jpg", area: "div6" },
+    { id: "drag7", src: "/images/bateria/imagen-6.jpg", area: "div7" },
+    { id: "drag8", src: "/images/bateria/imagen-7.jpg", area: "div8" },
+    { id: "drag9", src: "/images/bateria/imagen-8.jpg", area: "div9" }
+  ];
+
+
   
   // Función para cargar las imágenes en un orden aleatorio
   function cargarImagenesAleatorias(galeria) {
@@ -42,19 +58,22 @@ var imagenesEo = [
     }
   }
   
-
   
  
   
   // Llama a la función para cargar las imágenes en un orden aleatorio después de que el DOM se haya cargado completamente
   document.addEventListener("DOMContentLoaded", function() {
     var currentPage = window.location.pathname; // Obtiene la ruta de la página actual
-  
+
+
     if (currentPage.includes("eolica.html")) {
       cargarImagenesAleatorias(imagenesEo);
-    } else if (currentPage.includes("solar.html")) {
+     } else if (currentPage.includes("solar.html")) {
       cargarImagenesAleatorias(imagenesSol);
-    }
+     } else if (currentPage.includes("bateria.html")) {
+      cargarImagenesAleatorias(imagenesBat);
+     }
+
   });
   
   
@@ -102,6 +121,7 @@ function verificarRompecabezasCompleto() {
         }
     
     }
+    
   if (piezasCorrectas === 9) {
       timeSound.pause();
       alert("¡Has completado el rompecabezas! FELICIDADES");
@@ -119,8 +139,7 @@ function verificarRompecabezasCompleto() {
             let puntajeEntero = parseInt(puntajeRedondeado);
             
             alert("Obtuviste " + puntajeEntero + ' PUNTOS En esta prueba ' + "");
-
-                      
+                   
                        
                     var currentPage = window.location.pathname; // Obtiene la ruta de la página actual
                 
@@ -128,7 +147,9 @@ function verificarRompecabezasCompleto() {
                         window.location.href = "logradoEO.html"; 
                     } else if (currentPage.includes("solar.html")) {
                         window.location.href = "logradoSOL.html"; 
-                    }
+                    } else if (currentPage.includes("bateria.html")) {
+                      window.location.href = "logradoBAT.html"; 
+                  }
                       
         }
     
@@ -190,7 +211,9 @@ function cuentaAtras() {
                   window.location.href = "solar.html"; 
               } if (currentPage.includes("eolica.html")) {
                   window.location.href = "eolica.html"; 
-              }
+              }  if (currentPage.includes("bateria.html")) {
+                window.location.href = "bateria.html"; 
+            }
             
         } else {
             window.location.href = "adios.html"; // Redirige a la página de inicio
