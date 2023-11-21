@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.cdnfonts.com/css/gagalin" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f1d3ec1e99.js" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    
+  	<title>Juego Rompecabezas - Energia Solar -</title>
+</head>
+<body>
+   
+
+  <div class="BarraInformacion mt-5 d-flex justify-content-around " style="background-color: rgb(255, 211, 196);">
+    <div style="color: rgb(255, 254, 252)">¿ QUE ENERGIA RENOVABLE <span style="color: rgb(32, 204, 201);">SE ESCONDE</span> 
+    EN ESTA IMAGEN ? </div>
+    <div onclick="salir()"><i class="fa-solid fa-circle-xmark" style="color: #ff2600;" ></i></div>
+
+    
+    <!-- /<div>
+      <i id="playButton" class="fa-solid fa-volume-high fa-2xl mr-3"></i>
+      <i id="stopButton" class="fa-solid fa-volume-xmark fa-2xl"></i>
+      <h1 class="ml-3">SONIDO</h1>
+    </div> -->
+
+  </div>
+
+	<div class="contenedor mt-5">
+        
+      
+        <div class="contenedor-puzzle">
+                
+
+                  <div id="div1" class="ImagContainer" ondrop="drop(event, 'div1')" ondragover="allowDrop(event)">                
+                        </div>
+                        <div id="div2" class="ImagContainer" ondrop="drop(event, 'div2')" ondragover="allowDrop(event)">                     
+                        </div>
+                        <div id="div3" class="ImagContainer" ondrop="drop(event, 'div3')" ondragover="allowDrop(event)">                       
+                        </div>
+                        <div id="div4" class="ImagContainer" ondrop="drop(event, 'div4')" ondragover="allowDrop(event)">                       
+                        </div>
+                        <div id="div5" class="ImagContainer" ondrop="drop(event, 'div5')" ondragover="allowDrop(event)">                       
+                        </div>
+                        <div id="div6" class="ImagContainer" ondrop="drop(event, 'div6')" ondragover="allowDrop(event)">                       
+                        </div>
+                        <div id="div7" class="ImagContainer" ondrop="drop(event, 'div7')" ondragover="allowDrop(event)">                       
+                        </div>
+                        <div id="div8" class="ImagContainer" ondrop="drop(event, 'div8')" ondragover="allowDrop(event)">                       
+                        </div>
+                        <div id="div9" class="ImagContainer" ondrop="drop(event, 'div9')" ondragover="allowDrop(event)">                       
+                        </div>      
+        </div>
+
+        <div class="grilla" id="grilla">
+             
+        </div>       
+	</div>
+
+  <div class="BarraInformacion mt-5 d-flex justify-content-around">
+
+    <div style="color: black;" > - COMPLETA EL ROMPECABEZAS - </div>
+    <img src="/images/reloj.png">
+     <div id="timer" ></div>
+  
+  
+  </div>
+
+
+
+    <div >
+           <audio id="miAudio" class="miAudio" controls>
+          <source src="/media/cute-creatures.mp3" type="audio/mpeg">
+          Tu navegador no soporta la etiqueta de audio.
+      </audio>
+    <div>
+     
+          
+      </div>
+  </div>
+
+  
+    
+</body>
+</html>

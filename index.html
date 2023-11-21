@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.cdnfonts.com/css/gagalin" rel="stylesheet">
+    <script src="js/script.js"></script>
+  	<title>Juego Rompecabezas - Laia, Iluminanos</title>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+}
+body {
+        background: #fff;
+        font-family: 'Gagalin', sans-serif !important;
+        
+}
+</style>
+</head>
+<body>
+
+    
+<div class="container-fluid d-flex justify-content-center align-items: center ">
+
+   
+    <audio id="miAudio" class="miAudio" >
+       <source src="/media/cute-creatures.mp3" type="audio/mpeg">
+       Tu navegador no soporta la etiqueta de audio.
+    </audio>
+    
+
+
+    <video id="videoPresentacion" width="90%" height="90%" controls autoplay>
+        <source src="/media/bienvenides.mp4" type="video/mp4">
+    </video>
+    
+    <script>
+        document.getElementById('videoPresentacion').addEventListener('click', function() {
+            window.location.href = 'solar.html';
+        });
+    </script>
+
+
+      
+    </div>   
+  
+</body>
+</html>
